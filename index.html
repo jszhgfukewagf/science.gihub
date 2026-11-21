@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>科学的进步 · 给排水科学与工程 × 智能制造</title>
+<style>
+:root{--bg:#f5f9fb;--ink:#0f2740;--muted:#5b7185;--brand:#0d7a8c;--brand2:#12a3a3;--accent:#ef7d2f;--card:#fff;--line:#dbe6ee;--soft:#eef7f9;--shadow:0 8px 24px rgba(13,58,86,.08);--radius:14px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.75;font-family:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,sans-serif}
+a{color:var(--brand);text-decoration:none}
+a:hover{color:var(--brand2)}
+img,svg{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;color:var(--ink)}
+.brand .logo{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff}
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:10px;padding:6px 12px;font-size:1.2rem;cursor:pointer;color:var(--ink)}
+.nav-list{display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0}
+.nav-list>li>a,.sub-toggle{display:block;padding:10px 14px;border-radius:10px;font-size:.94rem;font-weight:600;color:var(--ink);background:none;border:none;cursor:pointer;font-family:inherit;white-space:nowrap}
+.nav-list>li>a:hover,.sub-toggle:hover{background:var(--soft);color:var(--brand)}
+.has-sub{position:relative}
+.sub{position:absolute;top:calc(100% + 6px);left:0;min-width:240px;list-style:none;margin:0;padding:8px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);display:none;z-index:20}
+.sub li a{display:block;padding:9px 12px;border-radius:8px;font-size:.89rem;color:var(--ink)}
+.sub li a:hover{background:var(--soft);color:var(--brand)}
+.has-sub:hover .sub,.has-sub:focus-within .sub,.has-sub.open .sub{display:block}
+main{padding:26px 0 70px;min-height:60vh}
+.page-title{font-size:1.9rem;margin:4px 0 18px}
+.crumb{font-size:.85rem;color:var(--muted);margin-bottom:4px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;border-bottom:1px solid var(--line);padding-bottom:12px}
+.tab{padding:8px 16px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:.89rem;font-weight:600;color:var(--muted)}
+.tab:hover{border-color:var(--brand2);color:var(--brand)}
+.tab.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+h2.sec{font-size:1.25rem;margin:30px 0 14px;padding-left:12px;border-left:4px solid var(--brand)}
+h3.sec{font-size:1.02rem;margin:22px 0 10px;color:var(--brand)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}
+.card h4{margin:0 0 8px;font-size:1rem;color:var(--brand)}
+.card p,.card li{font-size:.92rem;color:#274053}
+.card ul{margin:8px 0 0;padding-left:20px}
+.note{background:var(--soft);border-left:4px solid var(--brand2);padding:12px 16px;border-radius:8px;font-size:.92rem;margin:14px 0}
+.warn{background:#fff6ec;border-left-color:var(--accent)}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.9rem;background:#fff;border-radius:10px;overflow:hidden;box-shadow:var(--shadow)}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--soft);color:var(--brand);font-weight:700}
+tr:last-child td{border-bottom:none}
+.formula-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow)}
+.formula-card h4{margin:0 0 10px;font-size:.97rem;color:var(--brand)}
+.formula{background:#f2fafb;border-left:4px solid var(--brand);border-radius:8px;padding:12px 14px;font-family:Cambria,Georgia,serif;font-size:1.03rem;overflow-x:auto;line-height:2}
+.sym{font-size:.86rem;color:#3a5568;margin:10px 0 0}
+.sym b{color:var(--brand)}
+.cond{font-size:.84rem;color:var(--muted);margin:8px 0 0;border-top:1px dashed var(--line);padding-top:8px}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0}
+.flow .node{background:#fff;border:1px solid var(--brand2);color:var(--brand);border-radius:10px;padding:8px 14px;font-size:.87rem;font-weight:600;box-shadow:var(--shadow)}
+.flow .arw{color:var(--brand2);font-weight:700}
+.figcap{text-align:center;font-size:.84rem;color:var(--muted);margin:4px 0 18px}
+.case{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:16px 20px;box-shadow:var(--shadow);margin-bottom:16px}
+.case h4{margin:0 0 10px;font-size:1rem}
+.case dl{margin:0;font-size:.92rem}
+.case dt{font-weight:700;color:var(--accent);margin-top:10px}
+.case dd{margin:4px 0 0;color:#334b5e}
+.acc{border:1px solid var(--line);border-radius:12px;background:#fff;margin:10px 0;overflow:hidden;box-shadow:var(--shadow)}
+.acc-head{width:100%;text-align:left;background:none;border:none;padding:14px 18px;font-size:.95rem;font-weight:700;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;font-family:inherit}
+.acc-head::after{content:"＋";color:var(--brand)}
+.acc.open .acc-head::after{content:"－"}
+.acc-body{display:none;padding:0 18px 16px;font-size:.92rem;color:#334b5e}
+.acc-body ul{margin:0;padding-left:20px}
+.acc.open .acc-body{display:block}
+.quiz{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px;box-shadow:var(--shadow)}
+.quiz .q{font-weight:700;font-size:.95rem;margin-bottom:8px}
+.quiz .opts{font-size:.9rem;color:#334b5e;margin-bottom:10px}
+.ans-btn{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:6px 14px;font-size:.85rem;cursor:pointer;color:var(--brand);font-weight:600;font-family:inherit}
+.ans{display:none;margin-top:10px;font-size:.88rem;background:#f2fafb;border-left:4px solid var(--brand2);padding:10px 14px;border-radius:8px}
+.quiz.show-answer .ans{display:block}
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:center;background:linear-gradient(135deg,#e8f6f8,#f5f9fb 60%,#fff);border:1px solid var(--line);border-radius:22px;padding:44px 40px;box-shadow:var(--shadow);margin-bottom:32px}
+.eyebrow{color:var(--brand2);font-weight:700;letter-spacing:3px;font-size:.8rem;margin:0 0 6px}
+.hero h1{font-size:2.9rem;margin:0 0 14px;letter-spacing:2px;line-height:1.2}
+.hero .lead{font-size:1.02rem;color:#33506a;margin:0 0 22px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:11px 24px;border-radius:999px;font-weight:700;font-size:.95rem;transition:.2s;border:1px solid transparent}
+.btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;box-shadow:0 8px 18px rgba(13,122,140,.28)}
+.btn.primary:hover{transform:translateY(-2px);color:#fff}
+.btn.ghost{background:#fff;border-color:var(--brand);color:var(--brand)}
+.btn.ghost:hover{background:var(--soft)}
+.subject-card{display:block;background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 28px;box-shadow:var(--shadow);transition:.25s;color:var(--ink);position:relative;overflow:hidden}
+.subject-card::before{content:"";position:absolute;inset:0 auto 0 0;width:6px;background:linear-gradient(180deg,var(--brand),var(--brand2))}
+.subject-card.im::before{background:linear-gradient(180deg,#ef7d2f,#f2b544)}
+.subject-card:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(13,58,86,.14)}
+.subject-card .sc-icon{font-size:2rem}
+.subject-card h2{font-size:1.3rem;margin:8px 0 6px}
+.subject-card p{color:var(--muted);font-size:.92rem;margin:0 0 12px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:0 0 14px}
+.tags li{background:var(--soft);color:var(--brand);border-radius:999px;padding:3px 12px;font-size:.78rem;font-weight:600}
+.subject-card.im .tags li{background:#fff3e8;color:#c9611a}
+.sc-enter{font-weight:700;font-size:.9rem;color:var(--brand)}
+.steps{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.step{flex:1 1 150px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-align:center;box-shadow:var(--shadow)}
+.step span{display:block;font-size:.75rem;color:var(--brand2);font-weight:700}
+.step strong{font-size:.95rem}
+.mini{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:var(--shadow)}
+.mini h4{margin:0 0 6px;font-size:.95rem;color:var(--brand)}
+.mini p{margin:0;font-size:.85rem;color:var(--muted)}
+.video-box{background:#000;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:16/9;position:relative}
+.video-box iframe{width:100%;height:100%;display:block;border:none}
+.searchbar{width:100%;max-width:420px;padding:10px 16px;border:1px solid var(--line);border-radius:999px;font-size:.92rem;font-family:inherit;margin-bottom:14px;background:#fff}
+.searchbar:focus{outline:2px solid var(--brand2);border-color:transparent}
+footer{background:#0b2536;color:#9fc0cf;padding:36px 0;font-size:.86rem}
+footer a{color:#7fd3d3}
+footer .fgrid{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between}
+#toTop{position:fixed;right:22px;bottom:22px;width:46px;height:46px;border-radius:50%;background:var(--brand);color:#fff;border:none;font-size:1.2rem;cursor:pointer;box-shadow:0 8px 18px rgba(13,122,140,.4);display:none;z-index:90}
+#toTop.show{display:block}
+@media(max-width:900px){
+.hero{grid-template-columns:1fr;padding:30px 22px}
+.hero h1{font-size:2.1rem}
+.burger{display:block}
+.nav{display:none;position:absolute;top:66px;left:0;right:0;background:#fff;border-top:1px solid var(--line);max-height:calc(100vh - 66px);overflow:auto;box-shadow:var(--shadow)}
+.nav.open{display:block}
+.nav-list{flex-direction:column;align-items:stretch;gap:0;padding:10px}
+.sub{position:static;display:none;box-shadow:none;border:none;padding-left:14px;min-width:0}
+.has-sub.open .sub{display:block}
+.has-sub:hover .sub{display:none}
+.has-sub.open:hover .sub{display:block}
+.nav-list>li>a,.sub-toggle{width:100%;text-align:left}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap bar">
+    <a class="brand" href="#home"><span class="logo">⚗</span><span>科学的进步</span></a>
+    <button class="burger" id="burger" aria-label="打开菜单" aria-expanded="false">☰</button>
+    <nav class="nav" id="nav">
+      <ul class="nav-list">
+        <li><a href="#home">首页</a></li>
+        <li><a href="#intro">网页介绍</a></li>
+        <li class="has-sub">
+          <button class="sub-toggle" aria-expanded="false">给排水科学与工程 ▾</button>
+          <ul class="sub">
+            <li><a href="#water/intro">学科导论</a></li>
+            <li><a href="#water/quality">水质与水处理</a></li>
+            <li><a href="#water/network">管网与泵站</a></li>
+            <li><a href="#water/drainage">排水与雨洪管理</a></li>
+            <li><a href="#water/formula">公式定理库</a></li>
+            <li><a href="#water/case">案例与方法</a></li>
+          </ul>
+        </li>
+        <li class="has-sub">
+          <button class="sub-toggle" aria-expanded="false">智能制造 ▾</button>
+          <ul class="sub">
+            <li><a href="#im/intro">学科导论</a></li>
+            <li><a href="#im/sensor">感知与检测</a></li>
+            <li><a href="#im/control">控制与自动化</a></li>
+            <li><a href="#im/dt">数字孪生与仿真</a></li>
+            <li><a href="#im/robot">工业机器人与智能装备</a></li>
+            <li><a href="#im/mes">智能生产与MES</a></li>
+            <li><a href="#im/formula">公式定理库</a></li>
+            <li><a href="#im/case">案例与方法</a></li>
+          </ul>
+        </li>
+        <li class="has-sub">
+          <button class="sub-toggle" aria-expanded="false">跨学科融合 ▾</button>
+          <ul class="sub">
+            <li><a href="#fusion/smart-water">智慧水务与工业互联网</a></li>
+            <li><a href="#fusion/dt-carbon">数字孪生与绿色低碳</a></li>
+            <li><a href="#fusion/pbl">跨学科项目式学习</a></li>
+          </ul>
+        </li>
+        <li class="has-sub">
+          <button class="sub-toggle" aria-expanded="false">学习资源 ▾</button>
+          <ul class="sub">
+            <li><a href="#resources/map">知识图谱</a></li>
+            <li><a href="#resources/quiz">自测题</a></li>
+            <li><a href="#resources/glossary">术语表</a></li>
+            <li><a href="#resources/refs">参考资料</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="app" class="wrap"></main>
+
+<footer>
+  <div class="wrap fgrid">
+    <div><strong style="color:#fff;font-size:1rem">科学的进步</strong><br>给排水科学与工程 × 智能制造 跨学科学习平台</div>
+    <div>内容仅供教学学习参考 · 示意图均为原创绘制<br>公式与数据请以现行教材与规范为准</div>
+    <div><a href="#home">返回首页</a> · <a href="#intro">网页介绍</a> · <a href="#resources/refs">参考资料</a></div>
+  </div>
+</footer>
+
+<button id="toTop" aria-label="返回顶部">↑</button>
+
+<script>
+const SITE = {};
+
+SITE.home = {
+  title: '首页',
+  render: () => `
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">跨 学 科 学 习 平 台</p>
+      <h1>科学的进步</h1>
+      <p class="lead">跨越 <strong>给排水科学与工程</strong> 与 <strong>智能制造</strong>，从概念到公式，从案例到项目，构建可迁移的工程思维与系统视角。</p>
+      <div class="hero-btns">
+        <a class="btn primary" href="#water/intro">开始学习</a>
+        <a class="btn ghost" href="#intro">▶ 观看网页介绍</a>
+      </div>
+    </div>
+    <div class="hero-art" style="display:grid;place-items:center">
+      <svg viewBox="0 0 260 240" role="img" aria-label="水滴与齿轮融合示意图" style="max-width:250px">
+        <circle cx="130" cy="120" r="105" fill="#e6f4f6"/>
+        <path d="M130 42 C130 42 78 108 78 142 a52 52 0 0 0 104 0 C182 108 130 42 130 42 Z" fill="#12a3a3" opacity=".85"/>
+        <circle cx="112" cy="132" r="13" fill="#fff" opacity=".55"/>
+        <circle cx="130" cy="142" r="30" stroke="#ef7d2f" stroke-width="8" fill="none"/>
+        <g fill="#ef7d2f">
+          <rect x="124" y="104" width="12" height="12" rx="2"/>
+          <rect x="124" y="168" width="12" height="12" rx="2"/>
+          <rect x="92" y="136" width="12" height="12" rx="2"/>
+          <rect x="156" y="136" width="12" height="12" rx="2"/>
+        </g>
+        <text x="130" y="228" text-anchor="middle" font-size="12" fill="#5b7185">水系统 × 制造系统</text>
+      </svg>
+    </div>
+  </section>
+
+  <div class="grid g2">
+    <a class="subject-card water" href="#water/intro">
+      <div class="sc-icon">💧</div>
+      <h2>给排水科学与工程</h2>
+      <p>研究水的社会循环——取水、净化、输配、排放、处理与回用，让水安全、高效、可持续。</p>
+      <ul class="tags"><li>水循环</li><li>混凝沉淀过滤消毒</li><li>伯努利方程</li><li>管网水力计算</li><li>海绵城市</li></ul>
+      <span class="sc-enter">进入学习 →</span>
+    </a>
+    <a class="subject-card im" href="#im/intro">
+      <div class="sc-icon">⚙️</div>
+      <h2>智能制造</h2>
+      <p>以信息物理系统为核心，让制造过程可感知、可建模、可优化、可预测。</p>
+      <ul class="tags"><li>工业4.0</li><li>PID控制</li><li>数字孪生</li><li>工业机器人</li><li>MES/OEE</li></ul>
+      <span class="sc-enter">进入学习 →</span>
+    </a>
+  </div>
+
+  <h2 class="sec">网页介绍短片</h2>
+  <a class="card" href="#intro" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+    <div style="width:72px;height:72px;border-radius:16px;background:linear-gradient(135deg,#0d7a8c,#12a3a3);display:grid;place-items:center;color:#fff;font-size:1.7rem;flex:none">▶</div>
+    <div style="flex:1 1 260px">
+      <h4 style="margin:0 0 4px">《科学的进步》网站介绍 · 约 1 分钟</h4>
+      <p style="margin:0;color:var(--muted);font-size:.9rem">了解网站定位、内容结构、学习路径与跨学科特色，并附完整视频文字稿。</p>
+    </div>
+    <span class="btn ghost">观看介绍</span>
+  </a>
+
+  <h2 class="sec">推荐学习路径</h2>
+  <div class="steps">
+    <div class="step"><span>STEP 1</span><strong>概念入门</strong></div>
+    <div class="step"><span>STEP 2</span><strong>公式定理</strong></div>
+    <div class="step"><span>STEP 3</span><strong>案例分析</strong></div>
+    <div class="step"><span>STEP 4</span><strong>方法工具</strong></div>
+    <div class="step"><span>STEP 5</span><strong>跨学科项目</strong></div>
+  </div>
+
+  <h2 class="sec">跨学科融合亮点</h2>
+  <div class="grid g3">
+    <div class="mini"><h4>智慧水务</h4><p>给水管网传感器 + SCADA + 漏损预测，让水系统像工厂一样被实时监控与优化。</p></div>
+    <div class="mini"><h4>数字孪生</h4><p>泵站、污水厂、车间均可建立虚实同步模型，实现仿真推演与预测性维护。</p></div>
+    <div class="mini"><h4>工业互联网</h4><p>OPC UA 与边缘计算打通 OT/IT，为跨系统数据融合提供统一底座。</p></div>
+    <div class="mini"><h4>绿色低碳</h4><p>能耗优化、碳足迹核算与全生命周期评价，是两个学科共同的价值目标。</p></div>
+  </div>`
+};
+
+SITE.intro = {
+  title: '网页介绍',
+  render: () => `
+  <h1 class="page-title">网页介绍</h1>
+  <h2 class="sec" style="margin-top:0">网站介绍短片（约 1 分钟）</h2>
+  <div class="video-box" id="videoBox">
+    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=117642878781010&bvid=BV1cssh69ECc&cid=43740891449&p=1"
+            scrolling="no" frameborder="0" framespacing="0" allowfullscreen="true"></iframe>
+  </div>
+  <div class="note">本页嵌入 B 站视频，如无法播放请检查网络连接，或直接访问 B 站观看。页面下方附完整视频文字稿，方便无障碍阅读。</div>
+
+  <h2 class="sec">视频文字稿与分镜</h2>
+  <div class="acc"><button class="acc-head">0–10 秒 · 开场</button><div class="acc-body">
+    画面：标题《科学的进步》浮现，两侧分别出现水滴与齿轮图标。<br>
+    解说：“大家好，今天给大家介绍一个跨学科学习网页，名字叫《科学的进步》。它把两个听起来不相关的专业——给排水和智能制造——放在了一起。”</div></div>
+  <div class="acc"><button class="acc-head">10–25 秒 · 网页能学什么</button><div class="acc-body">
+    画面：水处理工艺流程图、管网示意、智能制造架构图。<br>
+    解说：“先说给排水。水是怎么从河里取出来、变干净、再送到家里，用完又怎么处理？网页里用流程图和公式讲得明明白白。再说智能制造。工厂里的机器怎么感知、怎么控制、怎么预测故障？也有图有案例，一步步拆开讲。”</div></div>
+  <div class="acc"><button class="acc-head">25–40 秒 · 网页怎么用</button><div class="acc-body">
+    画面：顶部菜单展开、二级子菜单、折叠面板依次点开。<br>
+    解说：“这个网页最方便的地方是：内容都分了级。点开菜单，先看学科导论，再看知识点，然后有公式库、案例库，最后还有自测题。不会一上来就堆一大片文字，想学哪块点哪块。”</div></div>
+  <div class="acc"><button class="acc-head">40–52 秒 · 特色功能</button><div class="acc-body">
+    画面：首页视频入口、知识图谱、术语表搜索演示。<br>
+    解说：“首页还有一段一分钟的介绍短片，点‘网页介绍’就能看。另外还有知识图谱和术语表，遇到不懂的词，搜一下就有解释。”</div></div>
+  <div class="acc"><button class="acc-head">52–60 秒 · 结尾</button><div class="acc-body">
+    画面：学习路径五步图依次点亮，最后回到首页标题。<br>
+    解说：“不管你是学生、老师，还是单纯对水处理和智能工厂好奇，都能从这个网页里找到入口。科学的进步，从一次跨学科的学习开始。”</div></div>
+
+  <h2 class="sec">网站特色</h2>
+  <div class="grid g3">
+    <div class="card"><h4>分级学习</h4><p>所有内容按“模块—知识点—公式—案例—方法—自测”分级组织，通过菜单与折叠面板逐层展开，绝不把知识点平铺在主页。</p></div>
+    <div class="card"><h4>公式定理库</h4><p>两个学科分别建立公式卡片库，每条公式配符号解释、适用条件与使用提示，便于查阅与复习。</p></div>
+    <div class="card"><h4>案例与方法</h4><p>污水处理厂升级、海绵城市改造、数字孪生车间、柔性装配线等真实情境案例，配合工程方法清单。</p></div>
+    <div class="card"><h4>跨学科融合</h4><p>智慧水务、数字孪生、工业互联网、绿色低碳四条主线，展示两个学科的方法如何互相迁移。</p></div>
+    <div class="card"><h4>自测与图谱</h4><p>提供自测题、知识图谱、术语表与参考资料，支持自主学习与课堂延伸。</p></div>
+  </div>`
+};
+
+SITE.water = {
+  title: '给排水科学与工程',
+  tabs: [
+    { id: 'intro', label: '学科导论', render: () => `
+      <h2 class="sec" style="margin-top:0">什么是给排水科学与工程</h2>
+      <p>给排水科学与工程研究<strong>水的社会循环</strong>：人类从自然水体取水，经净化后输配使用，使用后经收集、处理再排放或回用。它兼顾<strong>水量、水质、水压、水安全</strong>与<strong>经济性、可持续性</strong>，是城市基础设施的核心学科之一。</p>
+
+      <h3 class="sec">水的社会循环</h3>
+      <div class="flow">
+        <span class="node">降水</span><span class="arw">→</span>
+        <span class="node">地表水 / 地下水</span><span class="arw">→</span>
+        <span class="node">取水工程</span><span class="arw">→</span>
+        <span class="node">给水处理</span><span class="arw">→</span>
+        <span class="node">输配水管网</span><span class="arw">→</span>
+        <span class="node">用户用水</span><span class="arw">→</span>
+        <span class="node">排水收集</span><span class="arw">→</span>
+        <span class="node">污水处理</span><span class="arw">→</span>
+        <span class="node">排放 / 再生回用</span>
+      </div>
+      <p class="figcap">图 1　水的社会循环示意（示意图）</p>
+
+      <h2 class="sec">系统组成</h2>
+      <div class="grid g3">
+        <div class="card"><h4>取水工程</h4><p>地表水取水（河床式、岸边式、浮船式）与地下水取水（管井、大口井）。核心指标：取水量、取水保证率。</p></div>
+        <div class="card"><h4>给水处理</h4><p>去除悬浮物、胶体、有机物、病原微生物及特定污染物，使出水满足《生活饮用水卫生标准》。</p></div>
+        <div class="card"><h4>输配水系统</h4><p>泵站、水塔、管网与调节构筑物，保证用户端水量、水压与水质的稳定。</p></div>
+        <div class="card"><h4>排水系统</h4><p>污水管道、雨水管道、泵站、检查井，负责收集与输送。</p></div>
+        <div class="card"><h4>污水处理</h4><p>物理、化学、生物方法去除污染物，达标排放或再生利用。</p></div>
+        <div class="card"><h4>污泥处理处置</h4><p>浓缩、脱水、稳定、干化、焚烧或土地利用，防止二次污染。</p></div>
+      </div>
+
+      <h2 class="sec">主要水质指标</h2>
+      <table>
+        <thead><tr><th>类别</th><th>指标</th><th>含义与意义</th></tr></thead>
+        <tbody>
+          <tr><td>感官性状</td><td>浊度、色度、臭和味、肉眼可见物</td><td>直观反映水的洁净程度，浊度高会影响消毒效果</td></tr>
+          <tr><td>化学指标</td><td>pH、硬度、溶解性总固体、氯化物、硫酸盐</td><td>影响管网腐蚀结垢与口感</td></tr>
+          <tr><td>有机物综合指标</td><td>COD、BOD₅、TOC</td><td>反映有机污染负荷，是污水处理的核心设计参数</td></tr>
+          <tr><td>营养盐</td><td>氨氮、总氮 TN、总磷 TP</td><td>导致水体富营养化，是污水排放的关键控制项</td></tr>
+          <tr><td>微生物</td><td>菌落总数、总大肠菌群、耐热大肠菌群</td><td>评价消毒效果与生物安全性</td></tr>
+          <tr><td>毒理指标</td><td>砷、铅、汞、氟化物、硝酸盐等</td><td>长期健康风险控制</td></tr>
+        </tbody>
+      </table>
+      <div class="note">记忆线索：<b>物理—化学—生物</b>三类指标对应<b>沉淀过滤—反应去除—消毒灭活</b>三类工艺。</div>
+    `},
+
+    { id: 'quality', label: '水质与水处理', render: () => `
+      <h2 class="sec" style="margin-top:0">常规给水处理工艺流程</h2>
+      <div class="flow">
+        <span class="node">原水</span><span class="arw">→</span>
+        <span class="node">混凝</span><span class="arw">→</span>
+        <span class="node">沉淀 / 澄清</span><span class="arw">→</span>
+        <span class="node">过滤</span><span class="arw">→</span>
+        <span class="node">消毒</span><span class="arw">→</span>
+        <span class="node">清水池</span><span class="arw">→</span>
+        <span class="node">管网</span>
+      </div>
+      <p class="figcap">图 2　常规“混凝—沉淀—过滤—消毒”工艺流程（示意图）</p>
+
+      <h3 class="sec">混凝</h3>
+      <p>向水中投加混凝剂（如聚合氯化铝 PAC、硫酸铝、三氯化铁），使胶体脱稳并相互聚集。</p>
+      <div class="grid g2">
+        <div class="card"><h4>四种机理</h4><ul>
+          <li><b>压缩双电层</b>：高价反离子降低胶体 ζ 电位</li>
+          <li><b>吸附电中和</b>：水解产物吸附并中和胶粒电荷</li>
+          <li><b>吸附架桥</b>：高分子链连接多个胶粒</li>
+          <li><b>网捕卷扫</b>：大量氢氧化物沉淀网捕胶粒</li>
+        </ul></div>
+        <div class="card"><h4>影响因素</h4><ul>
+          <li>pH 值（决定水解产物形态）</li>
+          <li>投加量与投加方式</li>
+          <li>水温（低温混凝效果差）</li>
+          <li>混合与絮凝搅拌强度（速度梯度 G 值）</li>
+        </ul></div>
+      </div>
+
+      <h3 class="sec">沉淀与澄清</h3>
+      <table>
+        <thead><tr><th>类型</th><th>特征</th><th>典型应用</th></tr></thead>
+        <tbody>
+          <tr><td>自由沉淀</td><td>颗粒离散沉降，互不干扰，沉速恒定</td><td>沉砂池</td></tr>
+          <tr><td>絮凝沉淀</td><td>颗粒相互絮凝，沉速随深度增大</td><td>混凝后沉淀池</td></tr>
+          <tr><td>成层沉淀</td><td>颗粒形成整体层状下沉，出现固液界面</td><td>活性污泥二沉池</td></tr>
+          <tr><td>压缩沉淀</td><td>颗粒互相支撑，靠重力压缩</td><td>污泥浓缩池</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sec">过滤</h3>
+      <p>利用石英砂、无烟煤等滤料层的<b>机械截留、吸附、接触絮凝</b>作用去除细小悬浮物与部分有机物。关键参数：滤速、滤层厚度、反冲洗强度与周期。滤后水浊度通常控制在 0.1–0.3 NTU。</p>
+
+      <h3 class="sec">消毒</h3>
+      <p>灭活病原微生物，同时保持管网中的余氯以维持持续消毒能力。</p>
+      <div class="formula-card">
+        <h4>消毒 CT 值</h4>
+        <div class="formula">CT = C · t</div>
+        <p class="sym"><b>符号：</b>C——消毒剂剩余浓度（mg/L）；t——接触时间（min）；CT——消毒效能指标（mg·min/L）</p>
+        <p class="cond"><b>适用条件：</b>同一消毒剂、同一水温与 pH 下比较；CT 值越大，灭活效果越好。常见消毒剂：液氯、次氯酸钠、二氧化氯、臭氧、紫外线。</p>
+      </div>
+
+      <h2 class="sec">污水处理生物处理</h2>
+      <div class="grid g2">
+        <div class="card"><h4>活性污泥法</h4>
+          <p>利用好氧微生物群体（活性污泥）在曝气条件下氧化分解有机物，通过二沉池实现泥水分离并回流污泥维持污泥浓度。</p>
+          <ul><li>关键参数：MLSS、污泥龄 SRT、溶解氧 DO、污泥负荷 F/M、回流比 R</li>
+          <li>优点：效率高、运行成熟；缺点：易发生污泥膨胀</li></ul>
+        </div>
+        <div class="card"><h4>生物膜法</h4>
+          <p>微生物附着在填料表面形成生物膜，通过水流与氧气传递降解污染物。包括生物滤池、生物转盘、曝气生物滤池、MBBR。</p>
+          <ul><li>优点：耐冲击负荷、污泥产量低；缺点：填料堵塞、布水均匀性要求高</li></ul>
+        </div>
+        <div class="card"><h4>A²/O 工艺</h4>
+          <p>厌氧—缺氧—好氧串联，实现同步脱氮除磷：厌氧段聚磷菌释磷并吸收挥发性脂肪酸；缺氧段反硝化脱氮；好氧段硝化与过量吸磷。</p>
+        </div>
+        <div class="card"><h4>MBR 膜生物反应器</h4>
+          <p>用微滤/超滤膜替代二沉池，实现泥水分离。污泥浓度高、占地小、出水水质好，但存在膜污染与能耗问题。</p>
+        </div>
+      </div>
+
+      <h3 class="sec">污泥处理处置</h3>
+      <div class="flow">
+        <span class="node">浓缩</span><span class="arw">→</span>
+        <span class="node">稳定（厌氧/好氧消化）</span><span class="arw">→</span>
+        <span class="node">脱水</span><span class="arw">→</span>
+        <span class="node">干化 / 焚烧 / 土地利用 / 建材利用</span>
+      </div>
+      <div class="note warn">重要原则：污水处理的目标不是“把污染物消灭”，而是<b>把污染物转移、转化并妥善处置</b>，因此污泥处置是系统不可分割的一环。</div>
+    `},
+
+    { id: 'network', label: '管网与泵站', render: () => `
+      <h2 class="sec" style="margin-top:0">管网与泵站系统示意</h2>
+      <svg viewBox="0 0 760 200" role="img" aria-label="给水系统从水源到用户的流程示意图" style="width:100%;background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px">
+        <defs><marker id="ar" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#12a3a3"/></marker></defs>
+        <g font-family="inherit" font-size="14" text-anchor="middle">
+          <rect x="20" y="70" width="130" height="60" rx="10" fill="#e6f4f6" stroke="#0d7a8c"/><text x="85" y="106" fill="#0f2740">水源 / 清水池</text>
+          <rect x="200" y="70" width="130" height="60" rx="10" fill="#e6f4f6" stroke="#0d7a8c"/><text x="265" y="100" fill="#0f2740">泵站</text><text x="265" y="118" font-size="11" fill="#5b7185">H = Hst + SQ²</text>
+          <rect x="380" y="70" width="160" height="60" rx="10" fill="#e6f4f6" stroke="#0d7a8c"/><text x="460" y="100" fill="#0f2740">配水管网</text><text x="460" y="118" font-size="11" fill="#5b7185">节点 / 管段 / 环</text>
+          <rect x="590" y="70" width="140" height="60" rx="10" fill="#fff3e8" stroke="#ef7d2f"/><text x="660" y="100" fill="#0f2740">用户</text><text x="660" y="118" font-size="11" fill="#5b7185">水量·水压·水质</text>
+          <line x1="152" y1="100" x2="196" y2="100" stroke="#12a3a3" stroke-width="3" marker-end="url(#ar)"/>
+          <line x1="332" y1="100" x2="376" y2="100" stroke="#12a3a3" stroke-width="3" marker-end="url(#ar)"/>
+          <line x1="542" y1="100" x2="586" y2="100" stroke="#12a3a3" stroke-width="3" marker-end="url(#ar)"/>
+        </g>
+      </svg>
+      <p class="figcap">图 3　给水系统组成与水力计算对象（示意图）</p>
+
+      <h2 class="sec">核心公式</h2>
+      <div class="grid g2">
+        <div class="formula-card"><h4>① 连续性方程</h4>
+          <div class="formula">Q = A · v　（恒定流：Q₁ = Q₂）</div>
+          <p class="sym"><b>符号：</b>Q—流量（m³/s）；A—过水断面面积（m²）；v—断面平均流速（m/s）</p>
+          <p class="cond"><b>适用条件：</b>不可压缩流体恒定流；用于管径与流速的相互推算。</p>
+        </div>
+        <div class="formula-card"><h4>② 伯努利能量方程</h4>
+          <div class="formula">z₁ + p₁/(ρg) + v₁²/(2g) = z₂ + p₂/(ρg) + v₂²/(2g) + h<sub>w</sub></div>
+          <p class="sym"><b>符号：</b>z—位置水头；p/(ρg)—压力水头；v²/(2g)—流速水头；h<sub>w</sub>—两断面间水头损失（m）</p>
+          <p class="cond"><b>适用条件：</b>不可压缩恒定流，两断面取同一基准面；有泵时左式加泵扬程 H。</p>
+        </div>
+        <div class="formula-card"><h4>③ 达西—魏斯巴赫公式</h4>
+          <div class="formula">h<sub>f</sub> = λ · (L/d) · (v²/(2g))</div>
+          <p class="sym"><b>符号：</b>h<sub>f</sub>—沿程水头损失（m）；λ—沿程阻力系数；L—管长（m）；d—管径（m）；v—流速（m/s）</p>
+          <p class="cond"><b>适用条件：</b>有压管流；λ 与雷诺数 Re 和相对粗糙度有关，层流时 λ = 64/Re。</p>
+        </div>
+        <div class="formula-card"><h4>④ 海曾—威廉公式</h4>
+          <div class="formula">h<sub>f</sub> = 10.67 · L · Q<sup>1.852</sup> / (C<sup>1.852</sup> · d<sup>4.87</sup>)</div>
+          <p class="sym"><b>符号：</b>Q—流量（m³/s）；C—海曾—威廉系数（与管材、管龄有关）；d—管径（m）；L—管长（m）</p>
+          <p class="cond"><b>适用条件：</b>给水管网水力计算常用经验公式，适用于紊流粗糙区；单位需统一。</p>
+        </div>
+        <div class="formula-card"><h4>⑤ 曼宁公式</h4>
+          <div class="formula">v = (1/n) · R<sup>2/3</sup> · S<sup>1/2</sup></div>
+          <p class="sym"><b>符号：</b>n—粗糙系数；R—水力半径（m，R = A/χ）；S—水力坡度</p>
+          <p class="cond"><b>适用条件：</b>明渠均匀流与满流圆管；用于排水管道、渠道的流速与坡度校核。</p>
+        </div>
+        <div class="formula-card"><h4>⑥ 水泵扬程与功率</h4>
+          <div class="formula">H = H<sub>st</sub> + S·Q²　；　P<sub>有效</sub> = ρgQH　；　η = ρgQH / P<sub>轴</sub></div>
+          <p class="sym"><b>符号：</b>H<sub>st</sub>—静扬程（m）；S—管路阻力系数；P—功率（W）；η—效率</p>
+          <p class="cond"><b>适用条件：</b>水泵工况点由泵特性曲线 H(Q) 与管路特性曲线交点确定；选泵需校核高效区。</p>
+        </div>
+        <div class="formula-card"><h4>⑦ 水泵相似定律</h4>
+          <div class="formula">Q ∝ n　；　H ∝ n²　；　P ∝ n³</div>
+          <p class="sym"><b>符号：</b>n—转速；Q—流量；H—扬程；P—轴功率</p>
+          <p class="cond"><b>适用条件：</b>同一台泵、几何相似且相似工况点；是变频调速节能的理论依据。</p>
+        </div>
+        <div class="formula-card"><h4>⑧ 局部水头损失</h4>
+          <div class="formula">h<sub>j</sub> = ζ · v²/(2g)</div>
+          <p class="sym"><b>符号：</b>ζ—局部阻力系数（与管件形状、雷诺数有关）</p>
+          <p class="cond"><b>适用条件：</b>弯头、三通、阀门、突然扩大缩小等；总水头损失 h<sub>w</sub> = Σh<sub>f</sub> + Σh<sub>j</sub>。</p>
+        </div>
+      </div>
+
+      <h2 class="sec">管网水力计算方法</h2>
+      <div class="grid g2">
+        <div class="card"><h4>节点方程组法</h4><p>对每个节点列连续性方程（流入 = 流出 + 节点流量），对每条管段列能量方程，联立求解节点水压。</p><ul><li>未知量：节点水头 H<sub>i</sub></li><li>方程数 = 节点数</li></ul></div>
+        <div class="card"><h4>环方程组法</h4><p>以管段流量为未知量，满足节点连续性，并要求每个环内水头损失闭合（Σh<sub>f</sub> = 0），用哈代—克罗斯法迭代校正。</p></div>
+        <div class="card"><h4>节点流量与比流量</h4><p>沿线分散用水折算为节点集中流量：q<sub>i</sub> = 0.5 ×（相邻管段沿线流量之和），再加集中大用户流量。</p></div>
+        <div class="card"><h4>设计要点</h4><ul><li>经济流速：给水干管常用 1.0–1.4 m/s</li><li>最小服务水头：按建筑层数确定</li><li>消防校核：最不利点满足消防流量与水压</li><li>漏损控制：分区计量 DMA、压力管理</li></ul></div>
+      </div>
+    `},
+
+    { id: 'drainage', label: '排水与雨洪管理', render: () => `
+      <h2 class="sec" style="margin-top:0">排水体制</h2>
+      <div class="grid g2">
+        <div class="card"><h4>合流制</h4><p>污水与雨水共用一套管道。截流式合流制在晴天输送污水至处理厂，雨天部分溢流。投资较低，但存在溢流污染风险。</p></div>
+        <div class="card"><h4>分流制</h4><p>污水管与雨水管分开设置，污水全部处理、雨水就近排放或调蓄利用。环境效益好，但建设投资高、改造难度大。</p></div>
+      </div>
+
+      <h2 class="sec">雨洪设计核心公式</h2>
+      <div class="grid g2">
+        <div class="formula-card"><h4>① 推理公式</h4>
+          <div class="formula">Q = ψ · q · F　（或　Q = 0.278 · ψ · i · F）</div>
+          <p class="sym"><b>符号：</b>Q—设计雨水流量；ψ—径流系数；q—设计暴雨强度 [L/(s·hm²)]；i—降雨强度（mm/h）；F—汇水面积（hm² 或 km²）</p>
+          <p class="cond"><b>适用条件：</b>小汇水面积（一般 &lt; 2 km²）的雨水管渠设计流量估算；需按单位统一选取系数。</p>
+        </div>
+        <div class="formula-card"><h4>② 暴雨强度公式</h4>
+          <div class="formula">q = 167 A₁ (1 + C lg P) / (t + b)<sup>n</sup></div>
+          <p class="sym"><b>符号：</b>q—暴雨强度 [L/(s·hm²)]；P—设计重现期（a）；t—降雨历时（min）；A₁、C、b、n—地方参数</p>
+          <p class="cond"><b>适用条件：</b>依据当地暴雨强度公式与统计参数查取；t = t₁ + m·t₂（地面集水时间 + 管内流行时间）。</p>
+        </div>
+        <div class="formula-card"><h4>③ 径流系数</h4>
+          <div class="formula">ψ = Σ(ψ<sub>i</sub> · F<sub>i</sub>) / ΣF<sub>i</sub></div>
+          <p class="sym"><b>符号：</b>ψ<sub>i</sub>—各类下垫面径流系数；F<sub>i</sub>—对应面积</p>
+          <p class="cond"><b>适用条件：</b>汇水面积内下垫面组成复杂时按面积加权平均。参考值：硬化路面 0.85–0.90，绿地 0.15，屋面 0.90。</p>
+        </div>
+        <div class="formula-card"><h4>④ 调蓄池容积（简化）</h4>
+          <div class="formula">V = (Q<sub>in</sub> − Q<sub>out</sub>) · t</div>
+          <p class="sym"><b>符号：</b>V—调蓄容积（m³）；Q<sub>in</sub>—入流流量；Q<sub>out</sub>—出流流量；t—调蓄历时</p>
+          <p class="cond"><b>适用条件：</b>用于削峰与初雨截流；实际设计需基于降雨过程线进行水量平衡演算。</p>
+        </div>
+      </div>
+
+      <h2 class="sec">海绵城市与 LID</h2>
+      <div class="grid g3">
+        <div class="card"><h4>渗</h4><p>透水铺装、下沉式绿地、渗井，增加下渗、补充地下水。</p></div>
+        <div class="card"><h4>滞</h4><p>生物滞留设施、雨水花园，延缓汇流、削减峰值。</p></div>
+        <div class="card"><h4>蓄</h4><p>蓄水池、湿塘、雨水罐，调蓄并回用。</p></div>
+        <div class="card"><h4>净</h4><p>人工湿地、植被缓冲带，净化初期雨水。</p></div>
+        <div class="card"><h4>用</h4><p>雨水回用于绿化浇洒、道路冲洗、景观补水。</p></div>
+        <div class="card"><h4>排</h4><p>超标暴雨的安全排放通道与内涝风险评估。</p></div>
+      </div>
+      <div class="note">“渗、滞、蓄、净、用、排”六字方针，本质是把<b>快排</b>思路转为<b>源头减排 + 过程控制 + 系统治理</b>。</div>
+    `},
+
+    { id: 'formula', label: '公式定理库', render: () => `
+      <h2 class="sec" style="margin-top:0">给排水科学与工程 · 公式定理速查</h2>
+      <p>点击下方折叠面板查看分组公式；本库按“水力学基础—管网—泵站—雨洪—处理工艺”组织。</p>
+
+      <div class="acc"><button class="acc-head">水力学基础（5 条）</button><div class="acc-body"><ul>
+        <li><b>连续性方程：</b>Q = A·v</li>
+        <li><b>伯努利方程：</b>z₁ + p₁/(ρg) + v₁²/(2g) = z₂ + p₂/(ρg) + v₂²/(2g) + h<sub>w</sub></li>
+        <li><b>雷诺数：</b>Re = v·d/ν（Re &lt; 2000 层流，Re &gt; 4000 紊流）</li>
+        <li><b>达西公式：</b>h<sub>f</sub> = λ(L/d)(v²/2g)</li>
+        <li><b>局部损失：</b>h<sub>j</sub> = ζ·v²/(2g)</li>
+      </ul></div></div>
+
+      <div class="acc"><button class="acc-head">管网与明渠（3 条）</button><div class="acc-body"><ul>
+        <li><b>海曾—威廉：</b>h<sub>f</sub> = 10.67·L·Q<sup>1.852</sup>/(C<sup>1.852</sup>·d<sup>4.87</sup>)</li>
+        <li><b>曼宁公式：</b>v = (1/n)·R<sup>2/3</sup>·S<sup>1/2</sup>；Q = A·v</li>
+        <li><b>水力半径：</b>R = A/χ（满流圆管 R = d/4）</li>
+      </ul></div></div>
+
+      <div class="acc"><button class="acc-head">泵站（3 条）</button><div class="acc-body"><ul>
+        <li><b>管路特性：</b>H = H<sub>st</sub> + S·Q²</li>
+        <li><b>有效功率与效率：</b>P<sub>有效</sub> = ρgQH；η = P<sub>有效</sub>/P<sub>轴</sub></li>
+        <li><b>相似定律：</b>Q ∝ n，H ∝ n²，P ∝ n³</li>
+      </ul></div></div>
+
+      <div class="acc"><button class="acc-head">雨洪（3 条）</button><div class="acc-body"><ul>
+        <li><b>推理公式：</b>Q = ψ·q·F</li>
+        <li><b>暴雨强度：</b>q = 167A₁(1 + C·lgP)/(t + b)<sup>n</sup></li>
+        <li><b>调蓄容积：</b>V = (Q<sub>in</sub> − Q<sub>out</sub>)·t</li>
+      </ul></div></div>
+
+      <div class="acc"><button class="acc-head">处理工艺（4 条）</button><div class="acc-body"><ul>
+        <li><b>物料平衡：</b>进水负荷 = 出水负荷 + 去除负荷 + 污泥排出负荷</li>
+        <li><b>污泥负荷：</b>F/M = Q·S₀/(V·X)（kg BOD₅/(kg MLSS·d)）</li>
+        <li><b>污泥龄：</b>SRT = V·X/(Q<sub>w</sub>·X<sub>r</sub>)</li>
+        <li><b>消毒 CT 值：</b>CT = C·t</li>
+      </ul></div></div>
+
+      <h2 class="sec">核心定理与原理</h2>
+      <div class="grid g2">
+        <div class="card"><h4>连续性原理</h4><p>质量守恒在流体运动中的表达：恒定流下通过各断面的质量流量相等，不可压缩流体即体积流量相等。</p></div>
+        <div class="card"><h4>能量守恒（伯努利）</h4><p>理想流体沿流线的机械能守恒；实际流体需扣除水头损失，加入泵则为能量输入。</p></div>
+        <div class="card"><h4>达西定律</h4><p>渗流速度与水力坡度成正比：v = k·i，是地下水取水、渗滤与海绵设施设计的基础。</p></div>
+        <div class="card"><h4>斯托克斯沉降</h4><p>球形颗粒在黏性流体中的沉速 u = g(ρ<sub>s</sub> − ρ)d²/(18μ)，是沉淀池设计的理论基础。</p></div>
+        <div class="card"><h4>反应动力学</h4><p>污染物降解常按一级反应描述：C = C₀·e<sup>−kt</sup>，用于消毒、生物处理与自然衰减估算。</p></div>
+        <div class="card"><h4>物料平衡原理</h4><p>任何处理单元都应满足输入 = 输出 + 积累 + 转化，是工艺核算与污泥产量估算的基本方法。</p></div>
+      </div>
+    `},
+
+    { id: 'case', label: '案例与方法', render: () => `
+      <h2 class="sec" style="margin-top:0">典型案例</h2>
+
+      <div class="case"><h4>案例一　某城市污水处理厂 A²/O 工艺提标改造</h4><dl>
+        <dt>背景</dt><dd>原厂采用普通活性污泥法，出水 TN、TP 不能稳定达到一级 A 标准，受纳水体出现富营养化趋势。</dd>
+        <dt>问题</dt><dd>脱氮除磷能力不足；冬季低温硝化速率下降；二沉池固体负荷偏高。</dd>
+        <dt>方法</dt><dd>改造为 A²/O 工艺：增设厌氧段与缺氧段，调整内回流比与污泥回流比；延长污泥龄以保留硝化菌；投加除磷药剂作为补充。</dd>
+        <dt>关键公式</dt><dd>物料平衡核算氮的去除量；F/M = Q·S₀/(V·X) 校核污泥负荷；SRT = V·X/(Q<sub>w</sub>·X<sub>r</sub>) 控制污泥龄。</dd>
+        <dt>结论</dt><dd>出水 COD、NH₃-N、TN、TP 稳定达标，同时通过精确曝气降低电耗约 12%。</dd>
+      </dl></div>
+
+      <div class="case"><h4>案例二　老城区海绵化改造与内涝治理</h4><dl>
+        <dt>背景</dt><dd>老城区硬化率高、排水管网标准偏低，遇短历时强降雨频繁积水。</dd>
+        <dt>问题</dt><dd>径流系数大、峰值流量高；合流制溢流污染严重；地下空间受限。</dd>
+        <dt>方法</dt><dd>采用“渗、滞、蓄、净、用、排”组合措施：透水铺装 + 下沉式绿地 + 地下调蓄池 + 雨污分流改造；用推理公式与暴雨强度公式核算设计流量。</dd>
+        <dt>关键公式</dt><dd>Q = ψ·q·F；q = 167A₁(1 + C·lgP)/(t + b)<sup>n</sup>；V = (Q<sub>in</sub> − Q<sub>out</sub>)·t。</dd>
+        <dt>结论</dt><dd>设计重现期下地表径流峰值削减约 30%，积水点消除，初雨污染得到有效截流。</dd>
+      </dl></div>
+
+      <div class="case"><h4>案例三　城市供水管网漏损控制</h4><dl>
+        <dt>背景</dt><dd>老旧管网漏损率偏高，产销差大，供水企业经济压力大。</dd>
+        <dt>问题</dt><dd>漏点定位困难；压力过高加剧爆管；缺乏分区计量数据。</dd>
+        <dt>方法</dt><dd>建立 DMA 分区计量，夜间最小流量法识别漏损区域；安装压力监测点并实施压力管理；用海曾—威廉公式进行管网平差，定位薄弱管段。</dd>
+        <dt>关键公式</dt><dd>h<sub>f</sub> = 10.67·L·Q<sup>1.852</sup>/(C<sup>1.852</sup>·d<sup>4.87</sup>)；节点连续性方程与环方程 Σh<sub>f</sub> = 0。</dd>
+        <dt>结论</dt><dd>漏损率显著下降，爆管频次减少，为智慧水务平台建设奠定数据基础。</dd>
+      </dl></div>
+
+      <h2 class="sec">常用方法清单</h2>
+      <div class="grid g2">
+        <div class="card"><h4>水质监测与采样</h4><p>布点、采样频次、样品保存与质控；在线监测（浊度、余氯、pH、COD）与实验室分析结合。</p></div>
+        <div class="card"><h4>工艺比选</h4><p>从处理效果、投资、运行成本、占地、运维难度等维度进行多方案比较，常用层次分析法与费用效益分析。</p></div>
+        <div class="card"><h4>水力计算</h4><p>节点方程组法、环方程组法（哈代—克罗斯迭代），借助 EPANET 等软件完成管网平差与工况模拟。</p></div>
+        <div class="card"><h4>泵站选型</h4><p>依据设计流量与扬程确定泵型，校核高效区与并联运行工况，配置变频调速与备用泵。</p></div>
+        <div class="card"><h4>雨洪模拟</h4><p>SWMM 等模型进行降雨—径流—管流演算，评估内涝风险与调蓄设施效果。</p></div>
+        <div class="card"><h4>生命周期评价 LCA</h4><p>从取水、处理、输配到排放全过程核算能耗、物耗与环境影响，支撑绿色低碳决策。</p></div>
+      </div>
+    `}
+  ]
+};
+
+SITE.im = {
+  title: '智能制造',
+  tabs: [
+    { id: 'intro', label: '学科导论', render: () => `
+      <h2 class="sec" style="margin-top:0">从工业 4.0 到智能制造</h2>
+      <p>智能制造是以<strong>信息物理系统（CPS）</strong>为核心，融合传感、控制、网络、建模与人工智能技术，实现制造全过程的<strong>可感知、可建模、可优化、可预测</strong>。其目标不是“机器换人”，而是在质量、效率、柔性与能耗上实现系统级提升。</p>
+
+      <h2 class="sec">智能制造系统层级</h2>
+      <svg viewBox="0 0 600 250" role="img" aria-label="智能制造系统五层架构金字塔示意图" style="width:100%;max-width:620px;display:block;margin:0 auto">
+        <g font-family="inherit" font-size="14" text-anchor="middle">
+          <polygon points="40,220 560,220 534,176 66,176" fill="#0d7a8c"/><text x="300" y="205" fill="#fff">设备层 · 机床 / 传感器 / 执行器</text>
+          <polygon points="66,176 534,176 508,132 92,132" fill="#12a3a3"/><text x="300" y="161" fill="#fff">控制层 · PLC / DCS / 运动控制</text>
+          <polygon points="92,132 508,132 482,88 118,88" fill="#3bb8b8"/><text x="300" y="117" fill="#fff">执行层 · SCADA / MES / 调度</text>
+          <polygon points="118,88 482,88 456,44 144,44" fill="#ef9a3f"/><text x="300" y="73" fill="#fff">管理层 · ERP / PLM / 质量追溯</text>
+          <polygon points="144,44 456,44 430,0 170,0" fill="#ef7d2f"/><text x="300" y="29" fill="#fff">决策层 · 数据分析 / 智能决策</text>
+        </g>
+      </svg>
+      <p class="figcap">图 4　智能制造五层系统架构（示意图）</p>
+
+      <h2 class="sec">核心概念</h2>
+      <div class="grid g2">
+        <div class="card"><h4>信息物理系统 CPS</h4><p>计算过程与物理过程深度融合，通过感知—通信—计算—控制闭环，使物理实体具备自感知、自决策、自执行能力。</p></div>
+        <div class="card"><h4>OT / IT 融合</h4><p>运营技术（现场设备与控制）与信息技术（数据平台与业务系统）打通，实现从车间到企业的数据贯通。</p></div>
+        <div class="card"><h4>精益生产</h4><p>以消除浪费为核心：等待、搬运、库存、过度加工、过量生产、动作、不良品七大浪费。</p></div>
+        <div class="card"><h4>柔性制造</h4><p>在同一条产线上快速切换多品种产品，依赖标准化接口、可重构设备与智能排产。</p></div>
+      </div>
+    `},
+
+    { id: 'sensor', label: '感知与检测', render: () => `
+      <h2 class="sec" style="margin-top:0">传感器分类</h2>
+      <table>
+        <thead><tr><th>被测量</th><th>典型传感器</th><th>工业应用</th></tr></thead>
+        <tbody>
+          <tr><td>位移/位置</td><td>光栅尺、编码器、接近开关、激光位移传感器</td><td>机床进给、机器人关节</td></tr>
+          <tr><td>力/扭矩</td><td>应变式力传感器、压电式测力仪</td><td>装配压装、切削力监测</td></tr>
+          <tr><td>温度</td><td>热电偶、热电阻 PT100、红外测温</td><td>工艺温度控制、设备状态监测</td></tr>
+          <tr><td>压力/流量</td><td>压阻式压力传感器、电磁流量计</td><td>液压系统、水处理工艺</td></tr>
+          <tr><td>振动</td><td>加速度计、振动传感器</td><td>轴承故障诊断、预测性维护</td></tr>
+          <tr><td>视觉</td><td>工业相机、3D 视觉、激光轮廓仪</td><td>尺寸检测、缺陷识别、引导抓取</td></tr>
+        </tbody>
+      </table>
+
+      <div class="formula-card">
+        <h4>传感器灵敏度与分辨率</h4>
+        <div class="formula">S = Δ输出 / Δ输入　；　分辨率 = 可分辨的最小输入变化量</div>
+        <p class="sym"><b>符号：</b>S—灵敏度；Δ输出—输出量变化；Δ输入—被测量变化</p>
+        <p class="cond"><b>适用条件：</b>线性工作区内讨论；还需关注量程、精度、重复性、迟滞、零点漂移与温度补偿。</p>
+      </div>
+
+      <h2 class="sec">数据采集与工业物联网</h2>
+      <div class="grid g2">
+        <div class="card"><h4>OPC UA</h4><p>跨平台、面向服务的工业通信标准，提供统一的信息模型与安全通道，是 OT/IT 融合的关键中间件。</p></div>
+        <div class="card"><h4>工业以太网与现场总线</h4><p>PROFINET、EtherCAT、Modbus TCP 等，满足实时性与确定性要求。</p></div>
+        <div class="card"><h4>边缘计算</h4><p>在靠近设备侧完成数据清洗、特征提取与实时判断，降低时延与带宽压力。</p></div>
+        <div class="card"><h4>机器视觉检测流程</h4><p>成像 → 预处理 → 特征提取 → 检测/分类 → 结果判定与执行，常用 CNN 等深度学习方法。</p></div>
+      </div>
+      <div class="note">传感器是智能制造与智慧水务共同的起点：<b>没有可靠感知，就没有可信模型，也就没有有效优化。</b></div>
+    `},
+
+    { id: 'control', label: '控制与自动化', render: () => `
+      <h2 class="sec" style="margin-top:0">开环与闭环控制</h2>
+      <div class="grid g2">
+        <div class="card"><h4>开环控制</h4><p>不检测输出，按预设规律控制。结构简单、成本低，但抗扰动能力差。例：定时启停的水泵。</p></div>
+        <div class="card"><h4>闭环控制（反馈控制）</h4><p>测量输出并与设定值比较，用偏差驱动控制器。抗扰动能力强，是工业控制的主流形式。</p></div>
+      </div>
+
+      <div class="formula-card" style="margin-top:16px">
+        <h4>PID 控制律</h4>
+        <div class="formula">u(t) = K<sub>p</sub>·e(t) + K<sub>i</sub>∫₀ᵗ e(τ)dτ + K<sub>d</sub>·de(t)/dt</div>
+        <p class="sym"><b>符号：</b>e(t)—偏差（设定值 − 实测值）；K<sub>p</sub>—比例增益；K<sub>i</sub>—积分增益；K<sub>d</sub>—微分增益；u(t)—控制量</p>
+        <p class="cond"><b>作用：</b>P 提高响应速度但可能产生稳态误差与超调；I 消除稳态误差但可能引起振荡；D 抑制超调、改善动态性能但对噪声敏感。</p>
+      </div>
+
+      <h2 class="sec">工业控制系统组成</h2>
+      <div class="grid g3">
+        <div class="card"><h4>PLC 可编程逻辑控制器</h4><p>执行逻辑控制、顺序控制与过程控制，具有高可靠性与实时性，是产线控制核心。</p></div>
+        <div class="card"><h4>DCS 集散控制系统</h4><p>面向流程工业（化工、水处理），实现分散控制、集中管理。</p></div>
+        <div class="card"><h4>SCADA 数据采集与监控</h4><p>远程监视与控制，广泛用于泵站、管网、变电站等广域设施。</p></div>
+        <div class="card"><h4>HMI 人机界面</h4><p>操作员与设备交互的可视化窗口，展示状态、报警与趋势曲线。</p></div>
+        <div class="card"><h4>运动控制</h4><p>伺服驱动、位置/速度/转矩三环控制，用于机床进给与机器人关节。</p></div>
+        <div class="card"><h4>安全控制</h4><p>安全 PLC、急停回路、安全光幕，满足功能安全等级要求。</p></div>
+      </div>
+
+      <h2 class="sec">系统建模与稳定性</h2>
+      <div class="grid g2">
+        <div class="formula-card"><h4>传递函数</h4>
+          <div class="formula">G(s) = Y(s) / U(s)</div>
+          <p class="sym"><b>符号：</b>Y(s)—输出拉氏变换；U(s)—输入拉氏变换；s—复变量</p>
+          <p class="cond"><b>适用条件：</b>线性定常系统，零初始条件。典型环节：比例、积分、微分、一阶惯性、二阶振荡。</p>
+        </div>
+        <div class="formula-card"><h4>香农采样定理</h4>
+          <div class="formula">f<sub>s</sub> ≥ 2 · f<sub>max</sub></div>
+          <p class="sym"><b>符号：</b>f<sub>s</sub>—采样频率；f<sub>max</sub>—信号最高频率成分</p>
+          <p class="cond"><b>适用条件：</b>为无失真恢复连续信号，采样频率须不低于信号最高频率的两倍，否则发生频率混叠。</p>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px"><h4>稳定性判据</h4><ul>
+        <li><b>劳斯—赫尔维茨判据：</b>由特征方程系数判断闭环系统稳定性，无需解根。</li>
+        <li><b>奈奎斯特判据：</b>由开环频率特性判断闭环稳定性，可给出稳定裕度。</li>
+        <li><b>伯德图：</b>用幅值裕度与相位裕度评价系统的相对稳定性。</li>
+      </ul></div>
+    `},
+
+    { id: 'dt', label: '数字孪生与仿真', render: () => `
+      <h2 class="sec" style="margin-top:0">数字孪生五维模型</h2>
+      <div class="grid g3">
+        <div class="card"><h4>物理实体</h4><p>真实存在的设备、产线、车间或水厂系统。</p></div>
+        <div class="card"><h4>虚拟模型</h4><p>几何、物理、行为与规则模型的集合，能反映实体状态与演化。</p></div>
+        <div class="card"><h4>数据</h4><p>实时传感数据 + 历史数据 + 知识数据，驱动模型更新。</p></div>
+        <div class="card"><h4>服务</h4><p>监控、仿真、预测、优化、诊断等面向用户的功能。</p></div>
+        <div class="card"><h4>连接</h4><p>物理与虚拟之间的双向数据通道，实现虚实同步。</p></div>
+      </div>
+
+      <h2 class="sec">数字孪生闭环</h2>
+      <svg viewBox="0 0 600 300" role="img" aria-label="数字孪生虚实同步闭环示意图" style="width:100%;max-width:620px;display:block;margin:0 auto">
+        <defs><marker id="ar2" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#0d7a8c"/></marker></defs>
+        <g font-family="inherit" font-size="14" text-anchor="middle">
+          <rect x="60" y="30" width="200" height="60" rx="12" fill="#e6f4f6" stroke="#0d7a8c"/><text x="160" y="66" fill="#0f2740">物理实体</text>
+          <rect x="340" y="30" width="200" height="60" rx="12" fill="#e6f4f6" stroke="#0d7a8c"/><text x="440" y="66" fill="#0f2740">数据采集</text>
+          <rect x="340" y="210" width="200" height="60" rx="12" fill="#fff3e8" stroke="#ef7d2f"/><text x="440" y="246" fill="#0f2740">孪生模型与仿真</text>
+          <rect x="60" y="210" width="200" height="60" rx="12" fill="#fff3e8" stroke="#ef7d2f"/><text x="160" y="246" fill="#0f2740">优化决策</text>
+          <line x1="262" y1="60" x2="336" y2="60" stroke="#0d7a8c" stroke-width="3" marker-end="url(#ar2)"/>
+          <line x1="440" y1="92" x2="440" y2="206" stroke="#0d7a8c" stroke-width="3" marker-end="url(#ar2)"/>
+          <line x1="336" y1="240" x2="264" y2="240" stroke="#0d7a8c" stroke-width="3" marker-end="url(#ar2)"/>
+          <line x1="160" y1="208" x2="160" y2="94" stroke="#0d7a8c" stroke-width="3" marker-end="url(#ar2)"/>
+          <text x="300" y="160" font-size="13" fill="#5b7185">虚实同步</text>
+          <text x="300" y="180" font-size="13" fill="#5b7185">数据驱动</text>
+        </g>
+      </svg>
+      <p class="figcap">图 5　数字孪生虚实同步闭环（示意图）</p>
+
+      <h2 class="sec">关键方法与价值</h2>
+      <div class="grid g2">
+        <div class="card"><h4>建模与仿真</h4><p>用多体动力学、有限元、离散事件仿真、CFD 等方法建立虚拟模型，进行虚拟调试与工艺验证。</p></div>
+        <div class="card"><h4>虚实同步</h4><p>通过实时数据驱动模型参数更新，使虚拟模型与物理实体保持一致的状态感知。</p></div>
+        <div class="card"><h4>预测性维护</h4><p>基于设备状态数据与退化模型预测剩余寿命 RUL，把“坏了再修”变为“该修才修”。</p></div>
+        <div class="card"><h4>仿真优化</h4><p>在虚拟环境中试错，降低试制成本，缩短产线换型与工艺调试周期。</p></div>
+      </div>
+    `},
+
+    { id: 'robot', label: '工业机器人与智能装备', render: () => `
+      <h2 class="sec" style="margin-top:0">工业机器人分类</h2>
+      <table>
+        <thead><tr><th>类型</th><th>结构特点</th><th>典型应用</th></tr></thead>
+        <tbody>
+          <tr><td>直角坐标机器人</td><td>三轴直线运动，结构简单、精度高</td><td>上下料、点胶、搬运</td></tr>
+          <tr><td>SCARA 机器人</td><td>水平两轴 + 垂直轴，速度快</td><td>电子装配、分拣</td></tr>
+          <tr><td>六轴关节机器人</td><td>六个旋转关节，工作空间大、柔性高</td><td>焊接、喷涂、装配</td></tr>
+          <tr><td>并联机器人（Delta）</td><td>多杆并联驱动，高速高加速度</td><td>食品包装、快速分拣</td></tr>
+          <tr><td>协作机器人</td><td>力感知与安全设计，可人机共融</td><td>柔性装配、检测</td></tr>
+          <tr><td>AGV / AMR</td><td>自主导航移动平台</td><td>仓储物流、产线配送</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="sec">机器人运动学示意</h2>
+      <svg viewBox="0 0 520 300" role="img" aria-label="两连杆机器人D-H参数与运动学示意图" style="width:100%;max-width:540px;display:block;margin:0 auto">
+        <g font-family="inherit" font-size="13">
+          <line x1="40" y1="260" x2="480" y2="260" stroke="#c8d8e2" stroke-width="2"/>
+          <rect x="50" y="240" width="60" height="20" fill="#0d7a8c" rx="4"/><circle cx="80" cy="240" r="9" fill="#ef7d2f"/>
+          <text x="80" y="285" text-anchor="middle" fill="#5b7185">基座</text>
+          <line x1="80" y1="240" x2="260" y2="120" stroke="#0d7a8c" stroke-width="10" stroke-linecap="round"/>
+          <circle cx="260" cy="120" r="10" fill="#ef7d2f"/><text x="165" y="165" fill="#0d7a8c" font-weight="700">连杆1（a₁）</text>
+          <line x1="260" y1="120" x2="420" y2="190" stroke="#12a3a3" stroke-width="10" stroke-linecap="round"/>
+          <circle cx="420" cy="190" r="8" fill="#ef7d2f"/><text x="350" y="135" fill="#12a3a3" font-weight="700">连杆2（a₂）</text>
+          <text x="110" y="225" fill="#ef7d2f" font-weight="700">θ₁</text>
+          <text x="280" y="145" fill="#ef7d2f" font-weight="700">θ₂</text>
+          <text x="432" y="196" fill="#0f2740">末端执行器</text>
+        </g>
+      </svg>
+      <p class="figcap">图 6　两连杆机器人 D-H 参数与关节角（示意图）</p>
+
+      <h2 class="sec">D-H 参数与齐次变换</h2>
+      <div class="formula-card">
+        <h4>相邻连杆齐次变换矩阵</h4>
+        <div class="formula">T<sub>i</sub> = Rot(z, θ<sub>i</sub>) · Trans(z, d<sub>i</sub>) · Trans(x, a<sub>i</sub>) · Rot(x, α<sub>i</sub>)</div>
+        <p class="sym"><b>符号：</b>θ<sub>i</sub>—关节角；d<sub>i</sub>—连杆偏距；a<sub>i</sub>—连杆长度；α<sub>i</sub>—连杆扭转角</p>
+        <p class="cond"><b>适用条件：</b>标准 D-H 建模约定；末端位姿由各连杆变换连乘得到：⁰T<sub>n</sub> = T₁·T₂·…·T<sub>n</sub>。</p>
+      </div>
+      <div class="grid g2" style="margin-top:16px">
+        <div class="card"><h4>正运动学</h4><p>已知各关节变量，求末端执行器位姿。通过齐次变换连乘直接求解。</p></div>
+        <div class="card"><h4>逆运动学</h4><p>已知末端位姿，反求关节变量。可能无解、多解，需结合工作空间与关节限位选择合理解。</p></div>
+        <div class="card"><h4>工作空间</h4><p>机器人末端可达位置的集合，由连杆长度与关节运动范围决定。</p></div>
+        <div class="card"><h4>智能装备</h4><p>数控机床、增材制造装备、智能仓储、AGV 等，均强调感知—决策—执行的闭环。</p></div>
+      </div>
+    `},
+
+    { id: 'mes', label: '智能生产与MES', render: () => `
+      <h2 class="sec" style="margin-top:0">MES / ERP / PLM 的关系</h2>
+      <div class="grid g3">
+        <div class="card"><h4>ERP</h4><p>企业资源计划：管理订单、采购、库存、财务、人力等企业级资源。</p></div>
+        <div class="card"><h4>MES</h4><p>制造执行系统：承上启下，负责生产调度、工序管理、质量追溯、设备与人员管理、数据采集。</p></div>
+        <div class="card"><h4>PLM</h4><p>产品全生命周期管理：管理设计、工艺、BOM 与变更，打通研发与制造。</p></div>
+      </div>
+
+      <h2 class="sec">核心公式</h2>
+      <div class="grid g2">
+        <div class="formula-card"><h4>① OEE 设备综合效率</h4>
+          <div class="formula">OEE = 可用率 × 性能率 × 质量率</div>
+          <p class="sym"><b>符号：</b>可用率 = 实际运行时间/计划生产时间；性能率 = 理论节拍×产量/实际运行时间；质量率 = 合格品数/总产量</p>
+          <p class="cond"><b>适用条件：</b>衡量设备综合效率的经典指标；世界级水平通常认为 OEE ≥ 85%。</p>
+        </div>
+        <div class="formula-card"><h4>② 生产节拍</h4>
+          <div class="formula">T = 可用生产时间 / 客户需求量</div>
+          <p class="sym"><b>符号：</b>T—节拍（s/件 或 min/件）</p>
+          <p class="cond"><b>适用条件：</b>用于产线平衡与瓶颈工序识别；实际节拍应不大于理论节拍。</p>
+        </div>
+        <div class="formula-card"><h4>③ Little 定律</h4>
+          <div class="formula">L = λ · W</div>
+          <p class="sym"><b>符号：</b>L—系统内平均在制品数量；λ—到达率（件/单位时间）；W—平均停留时间</p>
+          <p class="cond"><b>适用条件：</b>稳态排队系统；用于在制品与生产周期的相互推算。</p>
+        </div>
+        <div class="formula-card"><h4>④ 可靠度函数</h4>
+          <div class="formula">R(t) = e<sup>−λt</sup></div>
+          <p class="sym"><b>符号：</b>λ—失效率；t—时间；R(t)—设备在 t 时刻仍正常工作的概率</p>
+          <p class="cond"><b>适用条件：</b>指数分布假设（失效率恒定），常用于电子设备与随机故障建模。</p>
+        </div>
+      </div>
+
+      <h2 class="sec">精益与质量管理方法</h2>
+      <div class="grid g2">
+        <div class="card"><h4>DMAIC</h4><p>定义—测量—分析—改进—控制，六西格玛的核心改进路径。</p></div>
+        <div class="card"><h4>PDCA 循环</h4><p>计划—执行—检查—处理，持续改进的基本范式。</p></div>
+        <div class="card"><h4>FMEA 失效模式与影响分析</h4><p>RPN = 严重度 S × 发生度 O × 探测度 D，用于风险排序与预防措施制定。</p></div>
+        <div class="card"><h4>价值流图 VSM</h4><p>绘制物料流与信息流，识别增值与非增值环节，是精益改善的起点。</p></div>
+      </div>
+    `},
+
+    { id: 'formula', label: '公式定理库', render: () => `
+      <h2 class="sec" style="margin-top:0">智能制造 · 公式定理速查</h2>
+      <p>按“控制—信号—机器人—生产管理—可靠性”分组，点击展开查看。</p>
+
+      <div class="acc"><button class="acc-head">控制理论（4 条）</button><div class="acc-body"><ul>
+        <li><b>PID：</b>u(t) = K<sub>p</sub>e(t) + K<sub>i</sub>∫e(t)dt + K<sub>d</sub>de(t)/dt</li>
+        <li><b>传递函数：</b>G(s) = Y(s)/U(s)</li>
+        <li><b>一阶惯性环节：</b>G(s) = K/(Ts + 1)</li>
+        <li><b>二阶系统标准式：</b>G(s) = ω<sub>n</sub>²/(s² + 2ζω<sub>n</sub>s + ω<sub>n</sub>²)</li>
+      </ul></div></div>
+
+      <div class="acc"><button class="acc-head">信号与传感（3 条）</button><div class="acc-body"><ul>
+        <li><b>采样定理：</b>f<sub>s</sub> ≥ 2f<sub>max</sub></li>
+        <li><b>灵敏度：</b>S = Δ输出/Δ输入</li>
+        <li><b>信噪比：</b>SNR(dB) = 20·lg(U<sub>s</sub>/U<sub>n</sub>)</li>
+      </ul></div></div>
+
+      <div class="acc"><button class="acc-head">机器人学（2 条）</button><div class="acc-body"><ul>
+        <li><b>齐次变换：</b>T<sub>i</sub> = Rot(z,θ)·Trans(z,d)·Trans(x,a)·Rot(x,α)</li>
+        <li><b>末端位姿：</b>⁰T<sub>n</sub> = T₁·T₂·…·T<sub>n</sub></li>
+      </ul></div></div>
+
+      <div class="acc"><button class="acc-head">生产管理（3 条）</button><div class="acc-body"><ul>
+        <li><b>OEE：</b>OEE = 可用率 × 性能率 × 质量率</li>
+        <li><b>节拍：</b>T = 可用生产时间/客户需求量</li>
+        <li><b>Little 定律：</b>L = λW</li>
+      </ul></div></div>
+
+      <div class="acc"><button class="acc-head">可靠性（2 条）</button><div class="acc-body"><ul>
+        <li><b>可靠度：</b>R(t) = e<sup>−λt</sup>；MTBF = 1/λ</li>
+        <li><b>FMEA 风险优先数：</b>RPN = S × O × D</li>
+      </ul></div></div>
+
+      <h2 class="sec">核心定理与原理</h2>
+      <div class="grid g2">
+        <div class="card"><h4>反馈控制原理</h4><p>通过测量输出、比较设定值、依据偏差实施控制，使系统在扰动下仍能维持期望性能。</p></div>
+        <div class="card"><h4>稳定性判据</h4><p>劳斯判据与奈奎斯特判据可判断闭环系统稳定性；工程上还关注幅值裕度与相位裕度。</p></div>
+        <div class="card"><h4>采样定理</h4><p>采样频率须不低于信号最高频率的两倍，否则产生频率混叠，无法无失真恢复。</p></div>
+        <div class="card"><h4>运动学变换</h4><p>刚体位置与姿态用齐次变换矩阵统一描述，是机器人建模与数控插补的数学基础。</p></div>
+        <div class="card"><h4>排队论</h4><p>用到达率与服务率描述等待现象，Little 定律给出在制品与周期的关系，用于产线设计。</p></div>
+        <div class="card"><h4>可靠性理论</h4><p>以失效率、可靠度、MTBF 描述设备寿命特征，是预测性维护与备件管理的依据。</p></div>
+      </div>
+    `},
+
+    { id: 'case', label: '案例与方法', render: () => `
+      <h2 class="sec" style="margin-top:0">典型案例</h2>
+
+      <div class="case"><h4>案例一　数字孪生车间</h4><dl>
+        <dt>背景</dt><dd>多品种小批量生产，换型频繁，产线布局与排产依赖经验。</dd>
+        <dt>问题</dt><dd>瓶颈工序难以识别；换型时间长；在制品积压。</dd>
+        <dt>方法</dt><dd>建立产线离散事件仿真模型，接入 MES 与设备数据形成数字孪生；用仿真对比多种布局与排产方案。</dd>
+        <dt>关键公式</dt><dd>节拍 T = 可用生产时间/客户需求量；Little 定律 L = λW；OEE = 可用率×性能率×质量率。</dd>
+        <dt>结论</dt><dd>瓶颈工序明确，在制品下降、换型时间缩短，OEE 提升。</dd>
+      </dl></div>
+
+      <div class="case"><h4>案例二　机器人柔性装配线</h4><dl>
+        <dt>背景</dt><dd>产品型号多、批量小，人工装配一致性差。</dd>
+        <dt>问题</dt><dd>定位精度不足；换型编程耗时；装配力控制困难。</dd>
+        <dt>方法</dt><dd>采用六轴机器人与力控末端执行器；用 D-H 参数建模并做正逆运动学求解；视觉引导定位；离线编程缩短换型时间。</dd>
+        <dt>关键公式</dt><dd>T<sub>i</sub> = Rot(z,θ)Trans(z,d)Trans(x,a)Rot(x,α)；⁰T<sub>n</sub> = ΠT<sub>i</sub>。</dd>
+        <dt>结论</dt><dd>装配一致性显著提高，换型时间缩短，柔性提升。</dd>
+      </dl></div>
+
+      <div class="case"><h4>案例三　基于 MES 的质量追溯</h4><dl>
+        <dt>背景</dt><dd>客户投诉某批次产品尺寸超差，需快速定位问题源头。</dd>
+        <dt>问题</dt><dd>纸质记录分散，追溯耗时长；工序参数未与产品绑定。</dd>
+        <dt>方法</dt><dd>MES 采集每道工序的设备参数、操作人员、物料批次与检测结果，建立产品—工序—参数的数据链；用 DMAIC 分析变异来源。</dd>
+        <dt>关键公式</dt><dd>OEE 分解定位损失环节；RPN = S×O×D 排序风险。</dd>
+        <dt>结论</dt><dd>追溯时间由天级缩短至分钟级，定位到某台设备刀具磨损异常并实施预防性更换。</dd>
+      </dl></div>
+
+      <div class="case"><h4>案例四　设备预测性维护</h4><dl>
+        <dt>背景</dt><dd>关键设备突发故障造成整线停机，备件库存高。</dd>
+        <dt>问题</dt><dd>定期维护存在过维护与欠维护；故障征兆难以人工识别。</dd>
+        <dt>方法</dt><dd>部署振动与温度传感器，边缘计算提取特征；建立退化模型预测剩余寿命 RUL；结合可靠度函数优化维护周期。</dd>
+        <dt>关键公式</dt><dd>R(t) = e<sup>−λt</sup>；MTBF = 1/λ；SNR 评估信号质量。</dd>
+        <dt>结论</dt><dd>非计划停机减少，备件库存下降，维护由“定期”转向“按需”。</dd>
+      </dl></div>
+
+      <h2 class="sec">常用方法清单</h2>
+      <div class="grid g2">
+        <div class="card"><h4>DMAIC 六西格玛</h4><p>以数据和统计工具驱动过程改进，适合质量缺陷率降低与工艺参数优化。</p></div>
+        <div class="card"><h4>价值流图 VSM</h4><p>从客户需求出发绘制信息流与物料流，识别七大浪费并制定改善计划。</p></div>
+        <div class="card"><h4>FMEA 风险分析</h4><p>系统识别潜在失效模式、后果与原因，用 RPN 排序并制定预防措施。</p></div>
+        <div class="card"><h4>数字孪生建模</h4><p>几何建模 + 物理建模 + 行为建模 + 规则建模，配合实时数据实现虚实同步。</p></div>
+        <div class="card"><h4>MES 系统集成</h4><p>与 ERP、PLM、SCADA、WMS 打通接口，形成订单—工艺—生产—质量—物流闭环。</p></div>
+        <div class="card"><h4>工业网络分层</h4><p>现场层、控制层、管理层、企业层分级组网，兼顾实时性、安全性与可扩展性。</p></div>
+      </div>
+    `}
+  ]
+};
+
+SITE.fusion = {
+  title: '跨学科融合',
+  tabs: [
+    { id: 'smart-water', label: '智慧水务与工业互联网', render: () => `
+      <h2 class="sec" style="margin-top:0">智慧水务的技术栈</h2>
+      <div class="flow">
+        <span class="node">传感器 / 仪表</span><span class="arw">→</span>
+        <span class="node">PLC / RTU</span><span class="arw">→</span>
+        <span class="node">SCADA</span><span class="arw">→</span>
+        <span class="node">数据平台</span><span class="arw">→</span>
+        <span class="node">模型与算法</span><span class="arw">→</span>
+        <span class="node">调度决策</span>
+      </div>
+      <p class="figcap">图 7　智慧水务数据链路（示意图）</p>
+
+      <div class="grid g2">
+        <div class="card"><h4>实时监测</h4><p>管网压力、流量、余氯、浊度、泵站运行状态在线采集；异常自动报警。</p></div>
+        <div class="card"><h4>漏损预测</h4><p>结合 DMA 夜间最小流量、压力数据与机器学习模型，识别漏损区域并评估漏损量。</p></div>
+        <div class="card"><h4>泵站优化调度</h4><p>根据用水量预测与电价峰谷，优化泵组合与转速，在满足服务水头前提下降低电耗。核心是 H = H<sub>st</sub> + SQ² 与相似定律的综合运用。</p></div>
+        <div class="card"><h4>数字孪生管网</h4><p>用水力模型（EPANET）建立管网孪生体，实时校核工况，模拟爆管影响与关阀方案。</p></div>
+      </div>
+
+      <h2 class="sec">与工业互联网的对应关系</h2>
+      <table>
+        <thead><tr><th>智慧水务环节</th><th>智能制造对应技术</th><th>共同目标</th></tr></thead>
+        <tbody>
+          <tr><td>在线仪表与传感器</td><td>工业传感与机器视觉</td><td>可靠感知</td></tr>
+          <tr><td>SCADA 与远程控制</td><td>PLC / DCS / SCADA</td><td>实时控制</td></tr>
+          <tr><td>管网水力模型</td><td>数字孪生与仿真</td><td>可建模、可预测</td></tr>
+          <tr><td>漏损与能耗分析</td><td>数据分析与 OEE 优化</td><td>效率提升</td></tr>
+          <tr><td>泵站群调度</td><td>MES 排产与优化调度</td><td>系统级优化</td></tr>
+        </tbody>
+      </table>
+      <div class="note">两个学科共享同一条技术主线：<b>传感 → 数据 → 模型 → 控制 → 优化 → 决策</b>。</div>
+    `},
+
+    { id: 'dt-carbon', label: '数字孪生与绿色低碳', render: () => `
+      <h2 class="sec" style="margin-top:0">数字孪生如何服务绿色低碳</h2>
+      <div class="grid g2">
+        <div class="card"><h4>污水处理厂能耗优化</h4><p>曝气是最大能耗环节。建立生化过程与曝气系统孪生模型，按进水负荷与溶解氧设定值优化风机转速，可显著降低电耗。</p></div>
+        <div class="card"><h4>智能制造能效管理</h4><p>采集设备能耗曲线，识别空载与待机浪费；结合排产优化减少峰时用电与设备空转。</p></div>
+        <div class="card"><h4>泵站与管网节能</h4><p>利用相似定律 Q ∝ n、H ∝ n²、P ∝ n³，变频调速可实现显著节能；孪生模型用于验证调度策略。</p></div>
+        <div class="card"><h4>碳足迹核算</h4><p>按“活动数据 × 排放因子”核算直接与间接排放，覆盖电耗、药耗、运输与污泥处置环节。</p></div>
+      </div>
+
+      <div class="formula-card" style="margin-top:16px">
+        <h4>碳足迹核算基本式</h4>
+        <div class="formula">E<sub>CO₂</sub> = Σ (AD<sub>i</sub> × EF<sub>i</sub>)</div>
+        <p class="sym"><b>符号：</b>E<sub>CO₂</sub>—温室气体排放量（tCO₂e）；AD<sub>i</sub>—第 i 项活动数据（如用电量 kWh、药剂量 kg）；EF<sub>i</sub>—对应排放因子</p>
+        <p class="cond"><b>适用条件：</b>核算边界需事先明确（范围一/二/三）；排放因子应引用权威数据库并注明来源与年份。</p>
+      </div>
+
+      <h2 class="sec">融合价值</h2>
+      <div class="grid g3">
+        <div class="mini"><h4>降本</h4><p>减少电耗、药耗与漏损，直接降低运行成本。</p></div>
+        <div class="mini"><h4>增效</h4><p>提高设备可用率与工艺稳定性，减少非计划停机。</p></div>
+        <div class="mini"><h4>减碳</h4><p>通过优化调度与能效管理降低单位产品/单位水量的碳排放。</p></div>
+      </div>
+    `},
+
+    { id: 'pbl', label: '跨学科项目式学习', render: () => `
+      <h2 class="sec" style="margin-top:0">项目一　智慧泵站数字孪生系统</h2>
+      <div class="grid g2">
+        <div class="card"><h4>任务描述</h4><p>为一座城市供水泵站建立数字孪生体，实现运行状态可视化、能耗分析与优化调度建议。</p></div>
+        <div class="card"><h4>涉及知识</h4><ul>
+          <li>给排水：泵特性曲线、管路特性 H = H<sub>st</sub> + SQ²、相似定律</li>
+          <li>智能制造：传感器选型、PLC 数据采集、OPC UA、数字孪生五维模型</li>
+        </ul></div>
+        <div class="card"><h4>交付成果</h4><p>泵站孪生模型 + 实时数据看板 + 能耗对比报告 + 优化调度策略说明。</p></div>
+        <div class="card"><h4>评价维度</h4><p>模型准确性、数据链路完整性、节能量测算合理性、报告规范性。</p></div>
+      </div>
+
+      <h2 class="sec">项目二　城市雨洪与工业排水协同调度</h2>
+      <div class="grid g2">
+        <div class="card"><h4>任务描述</h4><p>某工业园区与相邻城区共用排水系统，需在暴雨期间协调工业排水与市政排水，降低内涝与溢流风险。</p></div>
+        <div class="card"><h4>涉及知识</h4><ul>
+          <li>给排水：推理公式 Q = ψqF、暴雨强度公式、调蓄容积</li>
+          <li>智能制造：SCADA 监控、MES 排产调整、实时调度算法</li>
+        </ul></div>
+        <div class="card"><h4>交付成果</h4><p>调度方案 + 仿真结果对比（SWMM 或等效模型）+ 风险应急预案。</p></div>
+        <div class="card"><h4>评价维度</h4><p>峰值削减效果、调度可行性、应急响应完整性。</p></div>
+      </div>
+
+      <h2 class="sec">项目三　水质传感器 + 边缘计算 + 预测性维护</h2>
+      <div class="grid g2">
+        <div class="card"><h4>任务描述</h4><p>在污水厂关键工艺段部署在线水质传感器，利用边缘计算做异常识别，并对曝气设备实施预测性维护。</p></div>
+        <div class="card"><h4>涉及知识</h4><ul>
+          <li>给排水：水质指标、活性污泥工艺参数、CT 值与消毒</li>
+          <li>智能制造：传感器灵敏度与标定、边缘计算、可靠度 R(t) = e<sup>−λt</sup></li>
+        </ul></div>
+        <div class="card"><h4>交付成果</h4><p>传感器布点方案 + 异常识别规则/模型 + 维护周期优化建议。</p></div>
+        <div class="card"><h4>评价维度</h4><p>布点合理性、误报率与漏报率、维护成本节约测算。</p></div>
+      </div>
+
+      <div class="note">项目式学习的关键不是“做出炫酷界面”，而是<b>用正确的公式与模型解释现象、支撑决策</b>。每个项目都应明确：问题—假设—数据—模型—结论—局限。</div>
+    `}
+  ]
+};
+
+SITE.resources = {
+  title: '学习资源',
+  tabs: [
+    { id: 'map', label: '知识图谱', render: () => `
+      <h2 class="sec" style="margin-top:0">跨学科知识图谱</h2>
+      <p>两个学科共享“<b>传感—数据—模型—控制—优化—决策</b>”的方法链条，下图展示主要知识节点与对应关系。</p>
+      <svg viewBox="0 0 760 420" role="img" aria-label="给排水与智能制造跨学科知识图谱" style="width:100%;background:#fff;border:1px solid var(--line);border-radius:14px">
+        <g font-family="inherit" font-size="12" text-anchor="middle">
+          <rect x="20" y="20" width="330" height="170" rx="14" fill="#eef7f9" stroke="#0d7a8c"/>
+          <text x="185" y="45" font-size="14" font-weight="700" fill="#0d7a8c">给排水科学与工程</text>
+          <text x="185" y="72" fill="#0f2740">水循环 · 水质指标</text>
+          <text x="185" y="95" fill="#0f2740">混凝 / 沉淀 / 过滤 / 消毒</text>
+          <text x="185" y="118" fill="#0f2740">伯努利 · 达西 · 曼宁</text>
+          <text x="185" y="141" fill="#0f2740">泵站 · 管网平差</text>
+          <text x="185" y="164" fill="#0f2740">暴雨强度 · 海绵城市</text>
+          <rect x="410" y="20" width="330" height="170" rx="14" fill="#fff6ec" stroke="#ef7d2f"/>
+          <text x="575" y="45" font-size="14" font-weight="700" fill="#c9611a">智能制造</text>
+          <text x="575" y="72" fill="#0f2740">传感器 · 工业物联网</text>
+          <text x="575" y="95" fill="#0f2740">PID · PLC · SCADA</text>
+          <text x="575" y="118" fill="#0f2740">传递函数 · 稳定性判据</text>
+          <text x="575" y="141" fill="#0f2740">数字孪生 · 机器人运动学</text>
+          <text x="575" y="164" fill="#0f2740">MES · OEE · 可靠性</text>
+          <rect x="20" y="250" width="720" height="150" rx="14" fill="#f2fafb" stroke="#12a3a3"/>
+          <text x="380" y="278" font-size="14" font-weight="700" fill="#0d7a8c">共有方法链条</text>
+          <g fill="#0f2740">
+            <rect x="45" y="300" width="95" height="42" rx="9" fill="#fff" stroke="#12a3a3"/><text x="92" y="326">传感</text>
+            <rect x="160" y="300" width="95" height="42" rx="9" fill="#fff" stroke="#12a3a3"/><text x="207" y="326">数据</text>
+            <rect x="275" y="300" width="95" height="42" rx="9" fill="#fff" stroke="#12a3a3"/><text x="322" y="326">模型</text>
+            <rect x="390" y="300" width="95" height="42" rx="9" fill="#fff" stroke="#12a3a3"/><text x="437" y="326">控制</text>
+            <rect x="505" y="300" width="95" height="42" rx="9" fill="#fff" stroke="#12a3a3"/><text x="552" y="326">优化</text>
+            <rect x="620" y="300" width="95" height="42" rx="9" fill="#fff" stroke="#12a3a3"/><text x="667" y="326">决策</text>
+          </g>
+          <text x="380" y="375" fill="#5b7185">智慧水务 / 数字孪生 / 工业互联网 / 绿色低碳 均沿此链条展开</text>
+        </g>
+      </svg>
+      <p class="figcap">图 8　跨学科知识图谱（示意图）</p>
+    `},
+
+    { id: 'quiz', label: '自测题', render: () => `
+      <h2 class="sec" style="margin-top:0">给排水科学与工程 · 自测</h2>
+
+      <div class="quiz"><div class="q">1. 伯努利方程中 v²/(2g) 表示什么？</div>
+        <div class="opts">A. 压力水头　B. 位置水头　C. 流速水头　D. 水头损失</div>
+        <button class="ans-btn">查看答案</button>
+        <div class="ans">答案：C。v²/(2g) 为流速水头；p/(ρg) 为压力水头；z 为位置水头；h<sub>w</sub> 为水头损失。</div></div>
+
+      <div class="quiz"><div class="q">2. 关于海曾—威廉公式，下列说法正确的是？</div>
+        <div class="opts">A. 只适用于层流　B. 是给水管网常用的经验公式　C. 与管材无关　D. 不需要统一单位</div>
+        <button class="ans-btn">查看答案</button>
+        <div class="ans">答案：B。该式为给水管网水力计算的经验公式，适用于紊流粗糙区；系数 C 与管材、管龄有关，使用时必须统一单位。</div></div>
+
+      <div class="quiz"><div class="q">3. 推理公式 Q = ψqF 主要适用于？</div>
+        <div class="opts">A. 大流域洪水演进　B. 小汇水面积雨水管渠设计流量估算　C. 地下水渗流　D. 污水生物处理</div>
+        <button class="ans-btn">查看答案</button>
+        <div class="ans">答案：B。推理公式适用于小汇水面积（一般小于 2 km²）的雨水设计流量估算。</div></div>
+
+      <div class="quiz"><div class="q">4. 消毒 CT 值中 C 和 t 分别指？</div>
+        <div class="opts">A. 浓度与温度　B. 剩余消毒剂浓度与接触时间　C. 浊度与时间　D. 投加量与流量</div>
+        <button class="ans-btn">查看答案</button>
+        <div class="ans">答案：B。CT = C·t，C 为消毒剂剩余浓度（mg/L），t 为接触时间（min）。</div></div>
+
+      <div class="quiz"><div class="q">5. 活性污泥法中 SRT 表示？</div>
+        <div class="opts">A. 水力停留时间　B. 污泥龄　C. 污泥负荷　D. 回流比</div>
+        <button class="ans-btn">查看答案</button>
+        <div class="ans">答案：B。SRT 为污泥龄（污泥停留时间），是控制硝化菌保留与污泥产量的关键参数。</div></div>
+
+      <h2 class="sec">智能制造 · 自测</h2>
+
+      <div class="quiz"><div class="q">6. PID 控制中积分环节的主要作用是？</div>
+        <div class="opts">A. 提高响应速度　B. 消除稳态误差　C. 抑制高频噪声　D. 增大超调</div>
+        <button class="ans-btn">查看答案</button>
+        <div class="ans">答案：B。积分项累积历史偏差，可消除稳态误差，但过强会引起振荡。</div></div>
+
+      <div class="quiz"><div class="q">7. 香农采样定理要求采样频率满足？</div>
+        <div class="opts">A. f<sub>s</sub> ≥ f<sub>max</sub>　B. f<sub>s</sub> ≥ 2f<sub>max</sub>　C. f<sub>s</sub> ≤ 2f<sub>max</sub>　D. 与信号频率无关</div>
+        <button class="ans-btn">查看答案</button>
+        <div class="ans">答案：B。采样频率须不低于信号最高频率的两倍，否则发生频率混叠。</div></div>
+
+      <div class="quiz"><div class="q">8. OEE 的计算式是？</div>
+        <div class="opts">A. 可用率 + 性能率 + 质量率　B. 可用率 × 性能率 × 质量率　C. 产量 / 时间　D. 合格率 × 产量</div>
+        <button class="ans-btn">查看答案</button>
+        <div class="ans">答案：B。OEE 为三大效率指标的乘积，用于衡量设备综合效率。</div></div>
+
+      <div class="quiz"><div class="q">9. 机器人标准 D-H 参数不包括下列哪一项？</div>
+        <div class="opts">A. 关节角 θ　B. 连杆偏距 d　C. 连杆长度 a　D. 电机功率 P</div>
+        <button class="ans-btn">查看答案</button>
+        <div class="ans">答案：D。标准 D-H 参数为 θ、d、a、α 四个，描述相邻连杆的几何关系。</div></div>
+
+      <div class="quiz"><div class="q">10. Little 定律 L = λW 中 L 表示？</div>
+        <div class="opts">A. 到达率　B. 平均停留时间　C. 系统内平均在制品数量　D. 服务台数量</div>
+        <button class="ans-btn">查看答案</button>
+        <div class="ans">答案：C。L 为系统内平均在制品（或顾客）数量，λ 为到达率，W 为平均停留时间。</div></div>
+    `},
+
+    { id: 'glossary', label: '术语表', render: () => `
+      <h2 class="sec" style="margin-top:0">术语表</h2>
+      <input class="searchbar" id="glossSearch" type="search" placeholder="输入关键词筛选术语，如 混凝、PID、OEE…" aria-label="搜索术语">
+      <div id="glossList">
+        ${[
+          ['BOD₅','五日生化需氧量，反映水中可生物降解有机物含量。'],
+          ['COD','化学需氧量，用强氧化剂氧化水中有机物所消耗的氧量。'],
+          ['CT 值','消毒剂剩余浓度与接触时间的乘积，衡量消毒效能。'],
+          ['DMA','分区计量区域，用于供水管网漏损控制与管理。'],
+          ['F/M','污泥负荷，单位质量活性污泥每天承受的有机物量。'],
+          ['MBR','膜生物反应器，用膜分离替代二沉池的污水处理工艺。'],
+          ['NTU','散射浊度单位，衡量水的浑浊程度。'],
+          ['SRT','污泥龄，污泥在系统中的平均停留时间。'],
+          ['海绵城市','通过渗滞蓄净用排实现雨水源头减排与资源化利用的城市建设理念。'],
+          ['推理公式','由径流系数、暴雨强度与汇水面积估算雨水设计流量的公式。'],
+          ['D-H 参数','描述机器人相邻连杆几何关系的四个参数 θ、d、a、α。'],
+          ['MES','制造执行系统，连接企业管理层与车间控制层的生产管理系统。'],
+          ['OEE','设备综合效率，等于可用率、性能率、质量率之积。'],
+          ['OPC UA','面向服务的工业通信标准，用于 OT/IT 数据互通。'],
+          ['PID','比例—积分—微分控制，工业中最常用的反馈控制律。'],
+          ['PLC','可编程逻辑控制器，工业现场控制的核心设备。'],
+          ['SCADA','数据采集与监控系统，用于广域设施的远程监视与控制。'],
+          ['数字孪生','物理实体在虚拟空间中的动态映射，支持仿真、预测与优化。'],
+          ['信息物理系统 CPS','计算过程与物理过程深度融合的系统，是智能制造的核心。'],
+          ['预测性维护','基于状态数据预测设备退化与剩余寿命，按需安排维护。']
+        ].map(([t,d]) => '<div class="card" style="margin-bottom:10px"><h4>'+t+'</h4><p style="margin:0">'+d+'</p></div>').join('')}
+      </div>
+    `},
+
+    { id: 'refs', label: '参考资料', render: () => `
+      <h2 class="sec" style="margin-top:0">参考资料与延伸阅读</h2>
+      <div class="grid g2">
+        <div class="card"><h4>给排水方向</h4><ul>
+          <li>《给水工程》《排水工程》——高等学校给排水科学与工程专业教材</li>
+          <li>《室外给水设计标准》GB 50013、《室外排水设计标准》GB 50014</li>
+          <li>《生活饮用水卫生标准》GB 5749</li>
+          <li>《海绵城市建设技术指南》</li>
+          <li>EPANET 用户手册（管网水力模拟）</li>
+          <li>SWMM 用户手册（雨洪模拟）</li>
+        </ul></div>
+        <div class="card"><h4>智能制造方向</h4><ul>
+          <li>《自动控制原理》——经典控制理论教材</li>
+          <li>《机器人学导论》——运动学与 D-H 建模</li>
+          <li>《生产运作管理》《精益生产》——MES、OEE 与价值流</li>
+          <li>OPC UA 规范（IEC 62541）</li>
+          <li>数字孪生相关综述论文与白皮书</li>
+        </ul></div>
+        <div class="card"><h4>跨学科方向</h4><ul>
+          <li>智慧水务行业白皮书与典型案例</li>
+          <li>工业互联网体系架构相关标准</li>
+          <li>碳足迹核算标准（如 ISO 14064）与排放因子数据库</li>
+        </ul></div>
+        <div class="card"><h4>使用说明</h4><p>本网站内容为教学性归纳与整理，公式与参数引用时请以现行教材、国家标准与地方规范为准；案例数据为教学示例，不代表具体工程实际。</p></div>
+      </div>
+    `}
+  ]
+};
+
+/* ============ 渲染引擎 ============ */
+const app = document.getElementById('app');
+let lastPage = null;
+
+function parseHash(){
+  const raw = (location.hash || '#home').replace(/^#/, '');
+  const parts = raw.split('/');
+  let page = parts[0] || 'home';
+  const tab = parts[1] || '';
+  if(!SITE[page]) page = 'home';
+  return { page, tab };
+}
+
+function render(){
+  const { page, tab } = parseHash();
+  const def = SITE[page];
+  let html = '';
+
+  if(def.tabs){
+    const active = def.tabs.find(t => t.id === tab) || def.tabs[0];
+    html += '<div class="crumb"><a href="#home">首页</a> / ' + def.title + ' / ' + active.label + '</div>';
+    html += '<h1 class="page-title">' + def.title + '</h1>';
+    html += '<div class="tabs">' + def.tabs.map(t =>
+      '<a class="tab' + (t === active ? ' active' : '') + '" href="#' + page + '/' + t.id + '">' + t.label + '</a>'
+    ).join('') + '</div>';
+    html += '<div class="tab-content">' + active.render() + '</div>';
+  } else {
+    html += '<div class="tab-content">' + def.render() + '</div>';
+  }
+
+  app.innerHTML = html;
+
+  if(lastPage !== page){
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    lastPage = page;
+  }
+
+  document.getElementById('nav').classList.remove('open');
+  document.getElementById('burger').setAttribute('aria-expanded', 'false');
+}
+
+document.addEventListener('click', function(e){
+  const accHead = e.target.closest('.acc-head');
+  if(accHead){
+    accHead.parentElement.classList.toggle('open');
+    return;
+  }
+  const ansBtn = e.target.closest('.ans-btn');
+  if(ansBtn){
+    const quiz = ansBtn.closest('.quiz');
+    quiz.classList.toggle('show-answer');
+    ansBtn.textContent = quiz.classList.contains('show-answer') ? '收起答案' : '查看答案';
+    return;
+  }
+  const subToggle = e.target.closest('.sub-toggle');
+  if(subToggle && window.innerWidth <= 900){
+    const li = subToggle.parentElement;
+    li.classList.toggle('open');
+    subToggle.setAttribute('aria-expanded', li.classList.contains('open') ? 'true' : 'false');
+    return;
+  }
+});
+
+document.addEventListener('input', function(e){
+  if(e.target.id !== 'glossSearch') return;
+  const kw = e.target.value.trim().toLowerCase();
+  document.querySelectorAll('#glossList .card').forEach(function(c){
+    c.style.display = c.textContent.toLowerCase().indexOf(kw) > -1 ? '' : 'none';
+  });
+});
+
+document.getElementById('burger').addEventListener('click', function(){
+  const nav = document.getElementById('nav');
+  nav.classList.toggle('open');
+  this.setAttribute('aria-expanded', nav.classList.contains('open') ? 'true' : 'false');
+});
+
+const toTop = document.getElementById('toTop');
+window.addEventListener('scroll', function(){
+  toTop.classList.toggle('show', window.scrollY > 400);
+});
+toTop.addEventListener('click', function(){
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+window.addEventListener('hashchange', render);
+render();
+</script>
+</body>
+</html>
